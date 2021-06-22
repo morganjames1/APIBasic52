@@ -1,11 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class updateRelation : Migration
+    public partial class newRelation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "tb_M_Employee",
+                columns: table => new
+                {
+                    NIK = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salary = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    gender = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb_M_Employee", x => x.NIK);
+                });
+
             migrationBuilder.CreateTable(
                 name: "tb_M_University",
                 columns: table => new
@@ -45,7 +64,7 @@ namespace API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Degree = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GPA = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UniversityId = table.Column<int>(type: "int", nullable: true)
+                    UniversityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +74,7 @@ namespace API.Migrations
                         column: x => x.UniversityId,
                         principalTable: "tb_M_University",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,18 +82,17 @@ namespace API.Migrations
                 columns: table => new
                 {
                     NIK = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EducationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EducationId1 = table.Column<int>(type: "int", nullable: true)
+                    EducationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_T_Profiling", x => x.NIK);
                     table.ForeignKey(
-                        name: "FK_tb_T_Profiling_tb_M_Education_EducationId1",
-                        column: x => x.EducationId1,
+                        name: "FK_tb_T_Profiling_tb_M_Education_EducationId",
+                        column: x => x.EducationId,
                         principalTable: "tb_M_Education",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_tb_T_Profiling_tb_T_Account_NIK",
                         column: x => x.NIK,
@@ -89,9 +107,9 @@ namespace API.Migrations
                 column: "UniversityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_T_Profiling_EducationId1",
+                name: "IX_tb_T_Profiling_EducationId",
                 table: "tb_T_Profiling",
-                column: "EducationId1");
+                column: "EducationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -107,6 +125,9 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "tb_M_University");
+
+            migrationBuilder.DropTable(
+                name: "tb_M_Employee");
         }
     }
 }

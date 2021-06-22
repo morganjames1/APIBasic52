@@ -28,7 +28,7 @@ namespace API.Models
         [JsonConverter(typeof(StringEnumConverter))]
         public Gender gender { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Account Account { get; set; }
 
     }

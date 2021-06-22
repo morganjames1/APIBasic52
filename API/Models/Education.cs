@@ -15,6 +15,7 @@ namespace API.Models
         public int Id { get; set; }
         public string Degree { get; set; }
         public string GPA { get; set; }
+        public int UniversityId { get; set; }
 
         [JsonIgnore]
         public virtual University University { get; set; }

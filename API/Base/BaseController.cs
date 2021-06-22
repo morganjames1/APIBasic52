@@ -39,7 +39,6 @@ namespace API.Base
             }
         }
 
-
         [HttpGet("{key}")]
         public ActionResult Get(Key key)
         {
@@ -100,7 +99,6 @@ namespace API.Base
                 return BadRequest(new { status = HttpStatusCode.BadRequest, result = response, message = "Update Gagal" });
             }
         }
-
 
     }
 }

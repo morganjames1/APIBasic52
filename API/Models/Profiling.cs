@@ -13,7 +13,7 @@ namespace API.Models
     {
         [Key]
         public string NIK { get; set; }
-        public string EducationId { get; set; }
+        public int EducationId { get; set; }
 
         [JsonIgnore]
         public virtual Account Account{ get; set; }

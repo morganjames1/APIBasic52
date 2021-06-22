@@ -45,7 +45,7 @@ namespace API.Migrations
                     b.Property<string>("GPA")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UniversityId")
+                    b.Property<int>("UniversityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -91,15 +91,12 @@ namespace API.Migrations
                     b.Property<string>("NIK")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("EducationId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("EducationId1")
+                    b.Property<int>("EducationId")
                         .HasColumnType("int");
 
                     b.HasKey("NIK");
 
-                    b.HasIndex("EducationId1");
+                    b.HasIndex("EducationId");
 
                     b.ToTable("tb_T_Profiling");
                 });
@@ -134,7 +131,9 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.University", "University")
                         .WithMany("Educations")
-                        .HasForeignKey("UniversityId");
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("University");
                 });
@@ -143,7 +142,9 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.Education", "Education")
                         .WithMany("Profilings")
-                        .HasForeignKey("EducationId1");
+                        .HasForeignKey("EducationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("API.Models.Account", "Account")
                         .WithOne("Profiling")

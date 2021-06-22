@@ -64,7 +64,6 @@ namespace API.Repository
                 myContext.Entry(entity).State = EntityState.Modified;
                 var update = myContext.SaveChanges();
                 return update;
-
             }
             catch (NullReferenceException)
             {
