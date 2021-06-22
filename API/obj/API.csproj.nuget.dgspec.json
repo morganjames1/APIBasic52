@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "I:\\METRODATA\\PROJECT\\Backend API\\1\\API\\API.csproj": {}
+    "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\API.csproj": {}
   },
   "projects": {
-    "I:\\METRODATA\\PROJECT\\Backend API\\1\\API\\API.csproj": {
+    "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\METRODATA\\PROJECT\\Backend API\\1\\API\\API.csproj",
+        "projectUniqueName": "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "I:\\METRODATA\\PROJECT\\Backend API\\1\\API\\API.csproj",
+        "projectPath": "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\API.csproj",
         "packagesPath": "C:\\Users\\ronal\\.nuget\\packages\\",
-        "outputPath": "I:\\METRODATA\\PROJECT\\Backend API\\1\\API\\obj\\",
+        "outputPath": "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
