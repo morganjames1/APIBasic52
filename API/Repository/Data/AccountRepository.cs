@@ -82,10 +82,10 @@ namespace API.Repository.Data
                     mail.From = new MailAddress("moremore13arn@gmail.com");
                     mail.To.Add(getEmail);
                     mail.Subject = "Reset Password";
-                    mail.Body = "Hallo " + email.FirstName + System.Environment.NewLine + "This is your new password : " + emailG;
+                    mail.Body = "Hallo " + email.FirstName + System.Environment.NewLine + "This is your password : " + emailG;
 
                     smtpServer.UseDefaultCredentials = true;
-                    smtpServer.Credentials = new NetworkCredential("moremore13arn@gmail.com", "hitamputih1");
+                    smtpServer.Credentials = new NetworkCredential("moremore13arn@gmail.com", "yourpassword;)");
                     smtpServer.EnableSsl = true;
                     smtpServer.Send(mail);
 
