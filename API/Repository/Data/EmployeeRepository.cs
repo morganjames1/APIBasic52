@@ -16,6 +16,18 @@ namespace API.Repository.Data
             this.myContext = myContext; // Isi dari mycontext dari database
         }
 
+
+        public static string GetRandomSalt()
+        {
+            return BCrypt.Net.BCrypt.GenerateSalt(12);
+        }
+
+        public static string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password, GetRandomSalt());
+        }
+
+
         public int Register(RegistrasiVM registrasiVM)
    
         {
@@ -25,11 +37,11 @@ namespace API.Repository.Data
             Education education = new Education();
             Profiling profiling = new Profiling();
 
-            var check1 = myContext.Employees.Find(registrasiVM.NIK);
-            if (check1 == null)
+            var coba1 = myContext.Employees.Find(registrasiVM.NIK);
+            if (coba1 == null)
             {
-                var check2 = myContext.Employees.Where(e => e.Email == registrasiVM.Email).FirstOrDefault<Employee>();
-                if (check2 == null)
+                var coba2 = myContext.Employees.Where(e => e.Email == registrasiVM.Email).FirstOrDefault<Employee>();
+                if (coba2 == null)
                 {
                     
                         employee.NIK = registrasiVM.NIK;
@@ -44,7 +56,7 @@ namespace API.Repository.Data
                         myContext.SaveChanges();
 
                         account.NIK = registrasiVM.NIK;
-                        account.Password = registrasiVM.Password;
+                        account.Password = HashPassword(registrasiVM.Password); //Hashing
                         myContext.Accounts.Add(account);
                         myContext.SaveChanges();
 
