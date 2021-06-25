@@ -26,7 +26,7 @@ namespace API.Models
         public DateTime BirthDate { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public Gender gender { get; set; }
+        public virtual Gender gender { get; set; }
 
         //[JsonIgnore]
         public virtual Account Account { get; set; }

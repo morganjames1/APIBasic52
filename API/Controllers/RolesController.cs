@@ -11,16 +11,18 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfillingsController : BaseController<Profiling, ProfillingRepository, string>
+    public class RolesController :  BaseController<Role, RoleRepository, string>
     {
-
-        public ProfillingsController(ProfillingRepository profillingRepository) : base(profillingRepository)
+        public RolesController(RoleRepository roleRepository) : base(roleRepository)
         {
 
-        }
 
+
+        }
     }
 }
+
+

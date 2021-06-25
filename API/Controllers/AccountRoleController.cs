@@ -14,13 +14,12 @@ namespace API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfillingsController : BaseController<Profiling, ProfillingRepository, string>
+    public class AccountRoleController : BaseController<AccountRole, AccountRoleRepository, string>
     {
-
-        public ProfillingsController(ProfillingRepository profillingRepository) : base(profillingRepository)
+        public AccountRoleController(AccountRoleRepository accountRoleRepository) :base(accountRoleRepository)
         {
 
         }
-
     }
 }
+

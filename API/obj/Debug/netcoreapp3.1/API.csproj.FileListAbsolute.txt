@@ -139,3 +139,4 @@ I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\API\bin\Debug\netcoreapp3.1\MailKi
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\API\bin\Debug\netcoreapp3.1\MimeKit.dll
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\API\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\API\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

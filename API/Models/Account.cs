@@ -21,7 +21,9 @@ namespace API.Models
         [JsonIgnore]
         public virtual Profiling Profiling { get; set; }
 
+        public virtual ICollection<AccountRole> AccountRoles { get; set; }
+
         //lazyloading
-       
+
     }
 }

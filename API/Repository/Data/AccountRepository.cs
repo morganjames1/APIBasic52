@@ -85,7 +85,7 @@ namespace API.Repository.Data
                     mail.Body = "Hallo " + email.FirstName + System.Environment.NewLine + "This is your password : " + emailG;
 
                     smtpServer.UseDefaultCredentials = true;
-                    smtpServer.Credentials = new NetworkCredential("moremore13arn@gmail.com", "yourpassword;)");
+                    smtpServer.Credentials = new NetworkCredential("moremore13arn@gmail.com", "hitamputih1");
                     smtpServer.EnableSsl = true;
                     smtpServer.Send(mail);
 
@@ -98,7 +98,7 @@ namespace API.Repository.Data
             }
             else
             {
-                return 1;
+                return 0;
             }
         }
 
@@ -107,7 +107,9 @@ namespace API.Repository.Data
             var login = myContext.Employees.Where(x => (x.NIK == changePasswordVM.NIK) || (x.Email == changePasswordVM.Email)).FirstOrDefault<Employee>();
             if (login != null)
             {
+                
                 var checkPass = BCrypt.Net.BCrypt.Verify(changePasswordVM.OldPassword, login.Account.Password);
+
                 if (checkPass)
                 {
                     var changePass = myContext.Accounts.Find(login.NIK);

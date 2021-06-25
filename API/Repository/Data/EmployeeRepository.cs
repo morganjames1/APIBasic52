@@ -3,6 +3,7 @@ using API.Models;
 using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace API.Repository.Data
@@ -36,6 +37,7 @@ namespace API.Repository.Data
             Account account = new Account();
             Education education = new Education();
             Profiling profiling = new Profiling();
+            AccountRole accountRole = new AccountRole();
 
             var coba1 = myContext.Employees.Find(registrasiVM.NIK);
             if (coba1 == null)
@@ -71,6 +73,11 @@ namespace API.Repository.Data
                         myContext.Profilings.Add(profiling);
                         myContext.SaveChanges();
 
+                        accountRole.RoleId = "2";
+                        accountRole.NIK = registrasiVM.NIK;
+                        myContext.AccountRoles.Add(accountRole);
+                        myContext.SaveChanges();
+
                         return 2;
                     }
                 else
@@ -81,9 +88,83 @@ namespace API.Repository.Data
             else
             {
                 return 0;
+            }                                  
+        }
+
+        public IQueryable RegistrasiViewByNik(string nik)
+        {
+
+            var find = myContext.Employees.Find(nik);
+
+            if (find != null)
+            {
+
+                var regis = from emp in myContext.Employees
+                            join a in myContext.Accounts on emp.NIK equals a.NIK
+                            join p in myContext.Profilings on a.NIK equals p.NIK
+                            join edc in myContext.Educations on p.EducationId equals edc.Id
+                            join u in myContext.Universities on edc.UniversityId equals u.Id
+
+                            where emp.NIK == nik
+
+                            select new
+                            {
+                                emp.NIK,
+                                emp.FirstName,
+                                emp.LastName,
+                                emp.PhoneNumber,
+                                emp.BirthDate,
+                                emp.gender,
+                                emp.Salary,
+                                emp.Email,                   
+                                edc.Degree,
+                                edc.GPA,
+                                u.Name
+                            };
+                return regis;
+
             }
-                       
-                
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+        public  IQueryable RegistrasiView()
+        {
+
+            //on order.CustomerId equals cust.CustomerId
+            //var q1 = (from order in OrderList
+            //          join cust in CustomerList on order.CustomerId equals cust.CustomerId
+            //          join p in ProductList on order.ItemId equals p.ProductId
+            //          orderby cust.CustomerId
+
+
+            var regis = (from emp in myContext.Employees
+                         join a in myContext.Accounts on emp.NIK equals a.NIK
+                         join p in myContext.Profilings on a.NIK equals p.NIK
+                         join edc in myContext.Educations on p.EducationId equals edc.Id
+                         join u in myContext.Universities on edc.UniversityId equals u.Id
+                         select new
+                         {
+
+                             emp.NIK,
+                             emp.FirstName,
+                             emp.LastName,
+                             emp.PhoneNumber,
+                             emp.BirthDate,
+                             emp.gender,
+                             emp.Salary,
+                             emp.Email,
+                             edc.Degree,
+                             edc.GPA,
+                             u.Name
+
+                         });
+            return regis;
+           
         }
 
     }

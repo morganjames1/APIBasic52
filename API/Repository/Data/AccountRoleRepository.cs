@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace API.Repository.Data
 {
-    public class EducationRepository : GeneralRepository<MyContext, Education, int>
+    public class AccountRoleRepository : GeneralRepository<MyContext, AccountRole, string>
     {
-
-        public EducationRepository(MyContext myContext) : base(myContext)
+        public AccountRoleRepository(MyContext myContext) : base(myContext)
         {
-
-            
 
         }
 
+
     }
 }
+
+
+
