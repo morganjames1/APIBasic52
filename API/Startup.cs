@@ -36,10 +36,10 @@ namespace API
 
 
             //Tambahan Frontend
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+            //services.AddCors(c =>
+            //{
+            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            //});
 
             services.AddCors(c =>
             {
@@ -102,7 +102,7 @@ namespace API
 
 
             // Tambahan Frontend
-            app.UseCors(options => options.AllowAnyOrigin());
+            //app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseCors(options => options.WithOrigins("https://localhost:44380"));
 
