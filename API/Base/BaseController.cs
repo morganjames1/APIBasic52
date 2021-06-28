@@ -1,4 +1,5 @@
 ﻿using API.Repository.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,6 +25,7 @@ namespace API.Base
 
 
         [HttpGet]
+        //[EnableCors("AllowOrigin")]
         public ActionResult Get()
         {
             var get = repository.Get();

@@ -62,8 +62,8 @@ namespace InventoryService.Controllers
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("Email", email.Email),
-                        //new Claim("Nama", email.FirstName),
                         new Claim("role", find.RoleName)
+                        //new Claim("Nama", email.FirstName),
 
                    };
 

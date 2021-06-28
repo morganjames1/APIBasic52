@@ -12,6 +12,8 @@ namespace API.Models
     public class AccountRole
     {
         [Key]
+
+        [JsonIgnore]
         public string Id { get; set; }
 
         public string NIK { get; set; }

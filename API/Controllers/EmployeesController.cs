@@ -4,6 +4,7 @@ using API.Models;
 using API.Repository.Data;
 using API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,9 +17,11 @@ namespace API.Controllers
 {
 
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowOrigin")]
+
     public class EmployeesController : BaseController<Employee, EmployeeRepository, string>
     {
         private readonly EmployeeRepository repository;
@@ -51,6 +54,8 @@ namespace API.Controllers
             }
           
         }
+
+
 
         [HttpGet("RegistrasiView/{nik}")]
 

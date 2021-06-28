@@ -25,6 +25,7 @@ namespace API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -32,6 +33,20 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            //Tambahan Frontend
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins("https://localhost:44380"));
+            });
+
+
             services.AddControllers();
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("APIContext")));
 
@@ -39,6 +54,10 @@ namespace API
              services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+            
+
 
             //jwt
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -55,8 +74,6 @@ namespace API
                 };
             });
 
-          
-
             services.AddScoped<EmployeeRepository>();
             services.AddScoped<AccountRepository>();
             services.AddScoped<EducationRepository>();
@@ -67,11 +84,13 @@ namespace API
 
         }
 
-
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+           
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -81,6 +100,13 @@ namespace API
 
             app.UseRouting();
 
+
+            // Tambahan Frontend
+            app.UseCors(options => options.AllowAnyOrigin());
+
+            app.UseCors(options => options.WithOrigins("https://localhost:44380"));
+
+
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -89,6 +115,11 @@ namespace API
             {
                 endpoints.MapControllers();
             });
-        }
+
+       
+        
+
+
+        }       
     }
 }
