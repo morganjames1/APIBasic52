@@ -38,3 +38,4 @@ I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\Client\obj\Debug\netcoreapp3.1\Cli
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\Client\obj\Debug\netcoreapp3.1\Razor\Views\Home\Testing.cshtml.g.cs
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TestingLayout.cshtml.g.cs
 I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\Client\obj\Debug\netcoreapp3.1\Razor\Views\Testing\Index.cshtml.g.cs
+I:\METRODATA\PROJECT\Tugas\git-hub\APIBasic52\Client\obj\Debug\netcoreapp3.1\Razor\Views\Testing\Ajax.cshtml.g.cs

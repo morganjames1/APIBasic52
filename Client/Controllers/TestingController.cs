@@ -29,6 +29,11 @@ namespace Client.Controllers
             return View();
         }
 
+        public IActionResult Ajax()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
