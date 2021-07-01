@@ -31,12 +31,12 @@ let fillData = (val) => {
     }).done((result) => {
         srcAbility = " ";
         $.each(result.abilities, function (key, val) {
-            srcAbility += (val.ability.name + " ,&nbsp");
+            srcAbility += (val.ability.name + " &nbsp");
 
         });
             srcHeld = " ";
         $.each(result.types, function (key, val) {
-            srcHeld += (val.type.name + " ,&nbsp");
+            srcHeld += (val.type.name + " &nbsp");
         });
             
 
@@ -62,14 +62,16 @@ let fillData = (val) => {
             </div>
 
             <div class="row">
+                <div class="col">Weight     :</div>
+                <div class="col">${result.weight}</div>
+            </div>
+
+            <div class="row">
                 <div class="col">Height     :</div>
                 <div class="col">${result.height}</div>
             </div>
 
-            <div class="row">
-                <div class="col">Weight     :</div>
-                <div class="col">${result.weight}</div>
-            </div>
+           
         </div>
         `;
 
