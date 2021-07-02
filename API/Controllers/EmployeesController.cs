@@ -84,8 +84,7 @@ namespace API.Controllers
             var get = repository.RegistrasiView();
             if (get != null)
             {
-                var gett = Ok(new { status = HttpStatusCode.OK, result = get, message = "Success" });
-                return gett;
+                return Ok(get);
             }
             else
             {
