@@ -1,5 +1,6 @@
 ﻿using API.Context;
 using API.Models;
+using API.Repository.Data;
 using API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,9 @@ namespace InventoryService.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
+
+        private readonly AccountRepository repository;
+
         public IConfiguration configuration;
         private readonly MyContext myContext;
 
@@ -69,10 +73,12 @@ namespace InventoryService.Controllers
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
                     var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                    var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Audience"], 
+                    var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Audience"],
                         claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
-                    var show = new JwtSecurityTokenHandler ().WriteToken(token);
+                    var show = new JwtSecurityTokenHandler().WriteToken(token);
+
                     return Ok(new { status = HttpStatusCode.OK, nik = user.NIK, token = show });
+
                 }
                 else
                 {

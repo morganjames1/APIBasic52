@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o8AygSnyT4TsAXwpUdFhLwzmQglzs/d8j3Eb2tIUbZf8TC6e7L44myC2GU/gRz3mlczDPremJ+X50RObaRABxg==",
+  "dgSpecHash": "367+xfKyAkTeM+yi7Hc4CUNDPTercSl0GWiDeDs/6d/RUk5t0ZHKGkAxqX74ZkJuaxbGhtAhDaLbBp5y+aLwVw==",
   "success": true,
-  "projectFilePath": "I:\\METRODATA\\PROJECT\\Tugas\\git-hub\\APIBasic52\\API\\API.csproj",
+  "projectFilePath": "I:\\METRODATA\\PROJECT\\Frontend\\APIBasic52-main\\APIBasic52-main\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ronal\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\ronal\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",

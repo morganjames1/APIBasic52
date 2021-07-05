@@ -2,22 +2,31 @@
 using API.Models;
 using API.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Claims;
+using System.Text;
+
 using System.Threading.Tasks;
 
 namespace API.Repository.Data
 {
 
+
     public class AccountRepository : GeneralRepository<MyContext, Account, string>
     {
         private readonly MyContext myContext;
 
-        public AccountRepository(MyContext myContext) : base(myContext)
+        public IConfiguration configuration;
+        public AccountRepository(IConfiguration config, MyContext myContext) : base(myContext)
         {
+            this.configuration = config;
             this.myContext = myContext;
         }
 
@@ -126,6 +135,40 @@ namespace API.Repository.Data
             {
                 return 0;
             }
+        }
+
+        public string GenerateTokenLogin(LoginVM loginVM)
+        {
+            var data = (
+
+            from account in myContext.Accounts
+            join employee in myContext.Employees
+            on account.NIK equals employee.NIK
+            join accountroles in myContext.AccountRoles
+            on account.NIK equals accountroles.NIK
+            join role in myContext.Roles
+            on accountroles.RoleId equals role.RoleId
+            where account.NIK == $"{loginVM.NIK}" || employee.Email == $"{loginVM.Email}"
+            select new {
+
+                Email = employee.Email,
+                RoleName = role.RoleName
+            }).ToList();
+
+
+            var claims = new List<Claim>();
+            foreach (var item in data)
+            {
+                claims.Add(new Claim("email", item.Email));
+                claims.Add(new Claim("role", item.RoleName));
+            }
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
+            var sigin = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Audience"],
+                        claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: sigin);
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
     }
 }

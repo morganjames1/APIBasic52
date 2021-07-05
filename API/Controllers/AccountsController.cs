@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccountsController : BaseController<Account, AccountRepository, string>
@@ -31,7 +31,7 @@ namespace API.Controllers
             var response = repository.Login(loginVM);
             if (response == 2)
             {
-                var pos = Ok(new { status = HttpStatusCode.OK, result = response, message = "Login Successfull" });
+                var pos = Ok(new JWTokenVM { Status = HttpStatusCode.OK, Token = repository.GenerateTokenLogin(loginVM), Message = "Login Successfull" });
                 return pos;
             }
             else if (response == 1)
