@@ -147,14 +147,14 @@ $(document).ready(function () {
             {
                 "data": "gpa"
             },
-
             {
                 "data": null,
                 targets: 'no-sort', orderable: false,
                 render: function (data, type, row) {
-                    return "<button class=\"btn btn-primary\">Edit</button>";
+                    return `<button value="${data}" class="btn btn-warning">Edit</button>
+                            <button value="${data}" onclick="delEmployee(this.value)" class="btn btn-danger">Delete</button>`
                 }
-            }            
+            }
         ]
     });
 
@@ -312,7 +312,55 @@ let uniB = countUniv("Universitas Telkom");
             async: false
         });
         return count;
-}
+    }
+
+
+//function delEmployee(del) {
+//    $.ajax({
+//        url: "https://localhost:44388/API/AccountRole"
+//    }).done((result) => {
+//        $.each(result.result, function (key, val) {
+//            console.log(del);
+//            if (val.nik == del) {
+//                console.log(val.nik);
+//                Swal.fire({
+//                    title: 'Are you sure?',
+//                    text: "You won't be able to revert this!",
+//                    icon: 'warning',
+//                    showCancelButton: true,
+//                    confirmButtonColor: '#3085d6',
+//                    cancelButtonColor: '#d33',
+//                    confirmButtonText: 'Yes, delete it!'
+//                }).then((result) => {
+//                    if (result.isConfirmed) {
+//                        $.ajax({
+//                            url: "https://localhost:44388/API/AccountRole?key=" + val.id,
+//                            type: 'delete'
+//                        });
+//                        $.ajax({
+//                            url: "https://localhost:44388/API/Employees?Key=" + del,
+//                            type: 'delete'
+//                        }).done((result) => {
+//                            Swal.fire({
+//                                icon: 'success',
+//                                title: 'Deleted.',
+//                                text: result.message,
+//                            });
+//                            table.ajax.reload();
+//                        }).fail((error) => {
+//                            Swal.fire({
+//                                icon: 'error',
+//                                title: 'Failed',
+//                                text: error.responseJSON.message,
+//                            });
+//                        })
+//                    }
+//                })
+//            }
+//        });
+//    })
+
+//}
 
 
 

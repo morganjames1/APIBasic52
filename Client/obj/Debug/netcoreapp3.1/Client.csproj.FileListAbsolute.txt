@@ -202,3 +202,4 @@ I:\METRODATA\PROJECT\Frontend\APIBasic52-main\APIBasic52-main\Client\obj\Debug\n
 I:\METRODATA\PROJECT\Frontend\APIBasic52-main\APIBasic52-main\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_DashboardLayout.cshtml.g.cs
 I:\METRODATA\PROJECT\Frontend\APIBasic52-main\APIBasic52-main\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LandingPageLayout.cshtml.g.cs
 I:\METRODATA\PROJECT\Frontend\APIBasic52-main\APIBasic52-main\Client\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+I:\METRODATA\PROJECT\Frontend\APIBasic52-main\APIBasic52-main\Client\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
